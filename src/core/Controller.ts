@@ -1,5 +1,9 @@
-import { FindParams } from "./Model";
 import { Service } from "./Service";
+
+/**
+ * controller에서 service에 매칭되는 req를 수신하며, 사저처리이후, 서비스를 호출한다.
+ * 이후, res를 던저 준다.
+ */
 
 export class Controller {
   service: Service;
@@ -7,18 +11,4 @@ export class Controller {
   constructor(service: Service) {
     this.service = service;
   }
-
-  create(form: any) {
-    return this.service.create(form);
-  }
-
-  find(params: FindParams) {
-    return this.service.find(params);
-  }
-
-  findById(id: string | number) {
-    return this.service.findById(id);
-  }
-
-  //update , delete
 }

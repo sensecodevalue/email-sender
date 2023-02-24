@@ -1,21 +1,7 @@
-import { FindParams, Model } from "./Model";
+/**
+  - 서비스는 여러 모델을 참고할 수 있음으로 내부구현사항이 따로 없을 수 있다. 그냥 만들면됨
+  - 서비스는 어떤 것이 들어와서 어떤 처리를 할지 모름으로 따로 구현하거나 안구현하거나할 것이 따로없다.
+  - join을 할 수 없는 경우도 있을 것이다. 마이크로서비스로 DB가 분리되어있는 경우,
+ */
 
-export abstract class Service {
-  model: Model<unknown>;
-
-  constructor(model: Model<unknown>) {
-    this.model = model;
-  }
-
-  create(form: unknown) {
-    return this.model.create(form);
-  }
-
-  find(params: FindParams) {
-    return this.model.find(params);
-  }
-
-  findById(id: string | number) {
-    return this.model.find({ id });
-  }
-}
+export abstract class Service {}
