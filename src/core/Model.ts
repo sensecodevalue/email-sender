@@ -1,3 +1,5 @@
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+
 export interface FindParams {
   length: number;
   offset: number;
@@ -5,25 +7,20 @@ export interface FindParams {
   state?: string;
 }
 
-export type FindByIdParam = number | string;
+export type FindByIdParam = string;
 
-interface InterfaceModal<M> {
+export interface BaseModalInterface<M> {
   create?: (form: M) => M;
-  findById?: (id: FindByIdParam) => M;
+  findById?: (id: FindByIdParam) => Promise<M>;
   find?: (params: FindParams) => M[];
   update?: (id: FindByIdParam, form: Partial<Omit<M, "id">>) => M;
   delete?: (id: FindByIdParam) => M;
 }
 
-export abstract class Model<M> implements InterfaceModal<M> {
-  #dao: unknown;
-  constructor(dao: unknown) {
-    this.#dao = dao;
+export abstract class Model {
+  protected dao: DynamoDBClient;
+  
+  constructor(dao: DynamoDBClient) {
+    this.dao = dao;
   }
-
-  abstract create(form: M): M;
-  abstract findById(id: FindByIdParam): M;
-  abstract find(params: FindParams): M[];
-  abstract update(id: FindByIdParam, form: Partial<Omit<M, "id">>): M;
-  abstract delete(id: FindByIdParam): M;
 }
