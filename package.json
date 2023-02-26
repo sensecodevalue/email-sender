@@ -6,24 +6,33 @@
   "author": "sensecodevalue",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --watch ./src/**/*.ts --pretty --transpile-only --trace-warnings --trace-uncaught src/index.ts",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only --watch src src/index.ts",
     "prod": "ts-node src/index.ts",
     "build": "tsc",
     "start": "npm run build && node dist/src/index.js"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.264.0",
+    "@aws-sdk/lib-dynamodb": "^3.279.0",
+    "bee-queue": "^1.5.0",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "helmet": "^6.0.1"
+    "helmet": "^6.0.1",
+    "mustache": "^4.2.0",
+    "nodemailer": "^6.9.1",
+    "redis": "^4.6.5",
+    "tslog": "^4.7.5"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.17",
     "@types/helmet": "^4.0.0",
+    "@types/mustache": "^4.2.2",
     "@types/node": "^18.11.18",
+    "@types/nodemailer": "^6.4.7",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.5"
